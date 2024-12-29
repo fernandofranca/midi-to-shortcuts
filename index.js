@@ -22,8 +22,7 @@ input.openPort(0);
 // input.ignoreTypes(true, false, true)
 input.ignoreTypes(false, false, false);
 
-let modifierKeyIsOn = false;
-const listenOnly = false; //true;
+const listenOnly = false; // true;
 
 // Configure a callback.
 input.on('message', (deltaTime, message) => {
@@ -33,34 +32,28 @@ input.on('message', (deltaTime, message) => {
   // information interpreting the messages.
   const [midiMessage, note, velocity] = message;
 
-  console.log('👉 midiMessage, note, velocity:', midiMessage, note, velocity);
   if (listenOnly) {
+    console.log('👉 midiMessage, note, velocity:', midiMessage, note, velocity);
     return;
   }
 
   const messageAsString = message.join(' ');
 
   switch (messageAsString) {
+    case KEY_A_CUE_1:
+      robot.keyTap('down', 'shift');
+      break;
+    case KEY_A_CUE_2:
+      robot.keyTap('up', 'shift');
+      break;
     case KEY_A_PITCH_TURN_LEFT:
       robot.keyTap('down');
       break;
     case KEY_A_PITCH_TURN_RIGHT:
       robot.keyTap('up');
       break;
-    case KEY_A_ASSIGN_A:
-      robot.keyTap('tab', 'shift');
-      break;
-    case KEY_A_ASSIGN_B:
-      robot.keyTap('tab');
-      break;
     case KEY_A_SYNC:
       robot.keyTap('0');
-      break;
-    case KEY_A_CUE_1:
-      robot.keyTap('down', 'shift');
-      break;
-    case KEY_A_CUE_2:
-      robot.keyTap('up', 'shift');
       break;
     case KEY_A_SAMPLE_1:
       robot.keyTap('left', 'command');
@@ -76,9 +69,13 @@ input.on('message', (deltaTime, message) => {
       robot.keyTap('0');
       robot.keyTap('right', 'command');
       break;
+    case KEY_A_ASSIGN_A:
+      robot.keyTap('tab', 'shift');
+      break;
+    case KEY_A_ASSIGN_B:
+      robot.keyTap('tab');
+      break;
   }
-  // modifierKeyIsOn = true;
-  // modifierKeyIsOn = false;
 });
 
 const KEY_A_ASSIGN_A = '144 8 127';
