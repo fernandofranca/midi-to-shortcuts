@@ -1,5 +1,6 @@
 const midi = require('midi');
 const robot = require('@jitsi/robotjs');
+const MPD = require('./mpd218');
 
 // Set up a new input.
 const input = new midi.Input();
@@ -40,56 +41,36 @@ input.on('message', (deltaTime, message) => {
   const messageAsString = message.join(' ');
 
   switch (messageAsString) {
-    case KEY_A_CUE_1:
-      robot.keyTap('down', 'shift');
+    case MPD.PAD_A1:
+      robot.keyTap('g');
       break;
-    case KEY_A_CUE_2:
-      robot.keyTap('up', 'shift');
+    case MPD.PAD_A5:
+      robot.keyTap('space');
       break;
-    case KEY_A_PITCH_TURN_LEFT:
-      robot.keyTap('down');
-      break;
-    case KEY_A_PITCH_TURN_RIGHT:
-      robot.keyTap('up');
-      break;
-    case KEY_A_SYNC:
-      robot.keyTap('0');
-      break;
-    case KEY_A_SAMPLE_1:
-      robot.keyTap('left', 'command');
-      break;
-    case KEY_A_SAMPLE_2:
-      robot.keyTap('right', 'command');
-      break;
-    case KEY_A_SAMPLE_3:
-      robot.keyTap('delete', 'alt');
-      robot.keyTap('right', 'command');
-      break;
-    case KEY_A_SAMPLE_4:
-      robot.keyTap('0');
-      robot.keyTap('right', 'command');
-      break;
-    case KEY_A_ASSIGN_A:
-      robot.keyTap('tab', 'shift');
-      break;
-    case KEY_A_ASSIGN_B:
+    case MPD.PAD_A9:
       robot.keyTap('tab');
       break;
+    case MPD.PAD_A13:
+      robot.keyTap('2', ['command', 'alt']);
+      break;
+    case MPD.PAD_A4:
+      robot.keyTap('left');
+      break;
+    case MPD.PAD_A8:
+      robot.keyTap('right');
+      break;
+    case MPD.PAD_A12:
+      robot.keyTap('down', 'command');
+      break;
+    case MPD.PAD_A16:
+      robot.keyTap('up', 'command');
+      break;
   }
+
 });
 
-const KEY_A_ASSIGN_A = '144 8 127';
-const KEY_A_ASSIGN_B = '144 9 127';
-const KEY_A_PITCH_TURN_LEFT = '176 5 63';
-const KEY_A_PITCH_TURN_RIGHT = '176 5 65';
-const KEY_A_PITCH_MINUS = '144 6 127';
-const KEY_A_PITCH_PLUS = '144 7 127';
-const KEY_A_CUE_1 = '144 10 127';
-const KEY_A_CUE_2 = '144 11 127';
-const KEY_A_CUE_3 = '144 12 127';
-const KEY_A_CUE_4 = '144 13 127';
-const KEY_A_SAMPLE_1 = '144 14 127';
-const KEY_A_SAMPLE_2 = '144 15 127';
-const KEY_A_SAMPLE_3 = '144 17 127';
-const KEY_A_SAMPLE_4 = '144 18 127';
-const KEY_A_SYNC = '144 4 127';
+// These are only for cheat sheet 
+// robot.keyTap('.', 'command');
+// robot.keyTap('down', 'shift');
+// robot.keyTap('right', 'command');
+// robot.keyTap('tab', 'shift');
