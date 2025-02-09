@@ -2,7 +2,7 @@
 # yarn lockfile v1
 
 
-"@jitsi/robotjs@^0.6.13":
+"@jitsi/robotjs@0.6.13":
   version "0.6.13"
   resolved "https://registry.yarnpkg.com/@jitsi/robotjs/-/robotjs-0.6.13.tgz#4d59d0951a83e786b5819363751cb45b51f3c06f"
   integrity sha512-uFxRQp83jbKfMzk3lYIjgevy1X1dU/Z7OMPnqfdO1LcyPaXsOf+FCWSxM/KIxz0PvbBbORxUzuae5O5dAF5Kqw==
@@ -22,7 +22,7 @@ file-uri-to-path@1.0.0:
   resolved "https://registry.yarnpkg.com/file-uri-to-path/-/file-uri-to-path-1.0.0.tgz#553a7b8446ff6f684359c445f1e37a05dacc33dd"
   integrity sha512-0Zt+s3L7Vf1biwWZ29aARiVYLx7iMGnEUl9x33fbB/j3jR81u/O2LbqK+Bm1CDSNDKVtJ/YjwY7TUd5SkeLQLw==
 
-midi@^2.0.0:
+midi@2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/midi/-/midi-2.0.0.tgz#5035dd0d0c4b381eeb6e9202c785ce81221d0c7a"
   integrity sha512-HyCLWa+ET8Aqfu/NxdNkxfCx0EfCJrcZgKuhrY4c9UgkfxRt3ChM7RP1oC5vJf7ALXyuAG47jqr5yUlvSodTPQ==
