@@ -1,5 +1,5 @@
 {
-  "name": "midi-read",
+  "name": "midi-to-shortcuts",
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
