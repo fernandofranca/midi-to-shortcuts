@@ -1,6 +1,10 @@
 const midi = require('midi');
 const robot = require('@jitsi/robotjs');
-const MPD = require('./mpd218');
+const fs = require('fs');
+const yaml = require('js-yaml');
+const { exec } = require('child_process');
+
+const config = yaml.load(fs.readFileSync('./midi-config.yml', 'utf-8'));
 
 // Set up a new input.
 const input = new midi.Input();
@@ -40,34 +44,33 @@ input.on('message', (deltaTime, message) => {
 
   const messageAsString = message.join(' ');
 
-  switch (messageAsString) {
-    case MPD.PAD_A1:
-      robot.keyTap('g');
-      break;
-    case MPD.PAD_A5:
-      robot.keyTap('space');
-      break;
-    case MPD.PAD_A9:
-      robot.keyTap('tab');
-      break;
-    case MPD.PAD_A13:
-      robot.keyTap('2', ['command', 'alt']);
-      break;
-    case MPD.PAD_A4:
-      robot.keyTap('left');
-      break;
-    case MPD.PAD_A8:
-      robot.keyTap('right');
-      break;
-    case MPD.PAD_A12:
-      robot.keyTap('down', 'command');
-      break;
-    case MPD.PAD_A16:
-      robot.keyTap('up', 'command');
-      break;
-  }
+  // Find in the config any control that matches this MIDI message.
+  const control = config.controls.find(c => c.message === messageAsString);
 
+  if (control) {
+    // is key?
+    if (control.key) {
+      robot.keyTap(control.key, control.modifiers);
+      return;
+    }
+
+    if (control.switchToApp) {
+      switchToApp(control.switchToApp);
+      return;
+    }
+    
+  }
 });
+
+function switchToApp(appName) {
+  const script = `tell application "${appName}" to activate`;
+  exec(`osascript -e '${script}'`, (error) => {
+    if (error) {
+      console.error(`Error switching to ${appName}:`, error);
+    }
+  });
+}
+
 
 // These are only for cheat sheet 
 // robot.keyTap('.', 'command');

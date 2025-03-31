@@ -1,0 +1,25 @@
+controls:
+  - message: "153 36 127"   # MPD.PAD_A1
+    switchToApp: "Google Chrome"
+  - message: "153 40 127"   # MPD.PAD_A5
+    switchToApp: "Visual Studio Code"
+  - message: "153 44 127"   # MPD.PAD_A9
+    switchToApp: "Terminal"
+  - message: "153 48 127"   # MPD.PAD_A13
+    switchToApp: "Obsidian"
+  - message: "153 39 127"   # MPD.PAD_A4 
+    key: "1"
+    modifiers:
+      - "control"
+  - message: "153 43 127"   # MPD.PAD_A8
+    key: "2"
+    modifiers:
+      - "control"
+  - message: "153 47 127"   # MPD.PAD_A12
+    key: "3"
+    modifiers:
+      - "control"
+  - message: "153 51 127"   # MPD.PAD_A16
+    key: "4"
+    modifiers:
+      - "control"

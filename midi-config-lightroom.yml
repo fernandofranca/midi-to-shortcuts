@@ -1,0 +1,29 @@
+controls:
+  - message: "153 36 127"   # MPD.PAD_A1
+    key: "g"
+    modifiers: []
+  - message: "153 40 127"   # MPD.PAD_A5
+    key: "space"
+    modifiers: []
+  - message: "153 44 127"   # MPD.PAD_A9
+    key: "tab"
+    modifiers: []
+  - message: "153 48 127"   # MPD.PAD_A13
+    key: "2"
+    modifiers:
+      - "command"
+      - "alt"
+  - message: "153 39 127"   # MPD.PAD_A4 
+    key: "left"
+    modifiers: []
+  - message: "153 43 127"   # MPD.PAD_A8
+    key: "right"
+    modifiers: []
+  - message: "153 47 127"   # MPD.PAD_A12
+    key: "x"
+    modifiers:
+      - "shift"
+  - message: "153 51 127"   # MPD.PAD_A16
+    key: "p"
+    modifiers:
+      - "shift"
