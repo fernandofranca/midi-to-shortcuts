@@ -4,6 +4,29 @@ const fs = require('fs');
 const yaml = require('js-yaml');
 const { exec } = require('child_process');
 
+function runAppleScript(script) {
+  exec(`osascript -e '${script}'`, (error) => {
+    if (error) {
+      console.error(`Error running script:`, error.message);
+    }
+  });
+}
+
+function switchToApp(appName) {
+  const script = `tell application "${appName}" to activate`;
+  runAppleScript(script);
+}
+
+function setVolume(direction) {
+  const increment = direction === 'UP' ? '+2' : '-2';
+  runAppleScript(`set volume output volume (output volume of (get volume settings) ${increment})`);
+}
+
+const commandFunctionMap = {
+  'setVolume': setVolume,
+  'switchToApp': switchToApp,
+}
+
 const config = yaml.load(fs.readFileSync('./midi-config.yml', 'utf-8'));
 
 // Set up a new input.
@@ -48,28 +71,19 @@ input.on('message', (deltaTime, message) => {
   const control = config.controls.find(c => c.message === messageAsString);
 
   if (control) {
+    if (control.command) {
+      const fn = commandFunctionMap[control.command]
+      if (fn) fn(control.params);
+      return;
+    }
+
     // is key?
     if (control.key) {
       robot.keyTap(control.key, control.modifiers);
       return;
-    }
-
-    if (control.switchToApp) {
-      switchToApp(control.switchToApp);
-      return;
-    }
-    
+    }    
   }
 });
-
-function switchToApp(appName) {
-  const script = `tell application "${appName}" to activate`;
-  exec(`osascript -e '${script}'`, (error) => {
-    if (error) {
-      console.error(`Error switching to ${appName}:`, error);
-    }
-  });
-}
 
 
 // These are only for cheat sheet 

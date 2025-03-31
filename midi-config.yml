@@ -1,12 +1,16 @@
 controls:
   - message: "153 36 127"   # MPD.PAD_A1
-    switchToApp: "Google Chrome"
+    command: "switchToApp"
+    params: "Google Chrome"
   - message: "153 40 127"   # MPD.PAD_A5
-    switchToApp: "Visual Studio Code"
+    command: "switchToApp"
+    params: "Visual Studio Code"
   - message: "153 44 127"   # MPD.PAD_A9
-    switchToApp: "Terminal"
+    command: "switchToApp"
+    params: "Ghostty"
   - message: "153 48 127"   # MPD.PAD_A13
-    switchToApp: "Obsidian"
+    command: "switchToApp"
+    params: "Obsidian"
   - message: "153 39 127"   # MPD.PAD_A4 
     key: "1"
     modifiers:
@@ -23,3 +27,9 @@ controls:
     key: "4"
     modifiers:
       - "control"
+  - message: "176 14 1"
+    command: "setVolume"
+    params: "UP"
+  - message: "176 14 127"
+    command: "setVolume"
+    params: "DOWN"
